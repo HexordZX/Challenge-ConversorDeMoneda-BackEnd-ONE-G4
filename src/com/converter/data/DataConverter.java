@@ -1,4 +1,4 @@
-package com.converter;
+package com.converter.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
