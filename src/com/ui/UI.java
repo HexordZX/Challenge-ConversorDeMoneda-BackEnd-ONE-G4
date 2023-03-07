@@ -30,7 +30,7 @@ import com.converter.data.Currency;
 import com.converter.data.DataConverter;
 import com.converter.data.Temperature;
 import com.converter.listeners.ComboBoxUpdater;
-import com.converter.listeners.SwapComboBoxValuesButton;
+import com.converter.listeners.ComboBoxSwapValuesButton;
 
 public class UI extends JFrame {
 
@@ -90,9 +90,10 @@ public class UI extends JFrame {
 		iconConverter.setIcon(new ImageIcon(UI.class.getResource("/com/images/currency.png")));
 		iconConverter.setBounds(48, 55, 48, 48);
 		panelConverter.add(iconConverter);
-
-//		comboBoxTypeConverter.addActionListener(new ComboBoxUpdater());
-//		comboBoxTypeConverter.setSelectedIndex(0);
+		
+		JLabel lblConvertirDe = new JLabel("Convertir de:");
+		lblConvertirDe.setBounds(48, 182, 85, 17);
+		panelConverter.add(lblConvertirDe);
 
 		comboBoxValueFrom = new JComboBox<>(new DefaultComboBoxModel<>(data.getValoresConversorDefault(new String[0])));
 		comboBoxValueFrom.setFont(new Font("Roboto", Font.BOLD, 12));
@@ -101,6 +102,10 @@ public class UI extends JFrame {
 		comboBoxValueFrom.setBackground(new Color(238, 233, 218));
 		comboBoxValueFrom.setForeground(Color.BLACK);
 		panelConverter.add(comboBoxValueFrom);
+		
+		JLabel lblConvertirA = new JLabel("Convertir a:");
+		lblConvertirA.setBounds(301, 182, 85, 17);
+		panelConverter.add(lblConvertirA);
 
 		comboBoxValueTo = new JComboBox<>(new DefaultComboBoxModel<>(data.getValoresConversorDefault(new String[0])));
 		comboBoxValueTo.setFont(new Font("Roboto", Font.BOLD, 12));
@@ -179,8 +184,9 @@ public class UI extends JFrame {
 		panelOutput.add(outputResultado);
 
 		comboBoxTypeConverter.addActionListener(new ComboBoxUpdater(comboBoxValueFrom, comboBoxValueTo, iconConverter));
-		buttonSwitchValue.addActionListener(new SwapComboBoxValuesButton(comboBoxValueFrom, comboBoxValueTo));
+		buttonSwitchValue.addActionListener(new ComboBoxSwapValuesButton(comboBoxValueFrom, comboBoxValueTo));
 		buttonOutputValue.addActionListener(new ConvertButtonListener(comboBoxTypeConverter, comboBoxValueFrom, comboBoxValueTo, inputConversor, outputResultado));
+		
 	}
 
 	public JComboBox<String> getComboBoxTypeConverter() {
@@ -206,6 +212,4 @@ public class UI extends JFrame {
 	public JComboBox<String> getComboBoxValueFrom() {
 		return this.comboBoxValueFrom;
 	}
-
-
 }
